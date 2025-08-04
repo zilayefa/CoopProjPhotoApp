@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.provider.MediaStore
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -280,6 +281,12 @@ fun loadMediaFromGallery(context: Context): List<Pair<Uri, String>> {
         }
     }
 
+    // Log the results for debugging
+    Log.d("PhotoApp", "Found ${mediaList.size} media items")
+    val imageCount = mediaList.count { it.second == "image" }
+    val videoCount = mediaList.count { it.second == "video" }
+    Log.d("PhotoApp", "Images: $imageCount, Videos: $videoCount")
+    
     return mediaList // Return the complete list
 }
 
