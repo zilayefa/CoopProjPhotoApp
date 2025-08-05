@@ -180,27 +180,30 @@ fun GalleryPage(navController: NavController) {
                                 }
                         ) {
                             // Renders the media thumbnail based on its type
-                            if (type == "image") {
+                            Box(modifier = Modifier.fillMaxSize()) {
+                                // Load thumbnail for both images and videos using Coil
                                 Image(
-                                    painter = rememberAsyncImagePainter(model = uri), // Load image from URI
-                                    contentDescription = null,
-                                    contentScale = ContentScale.Crop, // Fill tile while preserving crop
+                                    painter = rememberAsyncImagePainter(model = uri), // Coil can load video thumbnails too
+                                    contentDescription = if (type == "image") "Image" else "Video thumbnail",
+                                    contentScale = ContentScale.Crop, // Fill tile while preserving aspect ratio
                                     modifier = Modifier.fillMaxSize()
                                 )
-                            } else {
-                                // Placeholder for video: black background with play icon
-                                Box(
-                                    modifier = Modifier
-                                        .fillMaxSize()
-                                        .background(Color.Black),
-                                    contentAlignment = Alignment.Center
-                                ) {
-                                    Icon(
-                                        imageVector = Icons.Default.PlayArrow,
-                                        contentDescription = "Video",
-                                        tint = Color.White,
-                                        modifier = Modifier.size(48.dp)
-                                    )
+                                
+                                // Show play icon overlay for videos
+                                if (type == "video") {
+                                    Box(
+                                        modifier = Modifier
+                                            .fillMaxSize()
+                                            .background(Color.Black.copy(alpha = 0.3f)), // Semi-transparent overlay
+                                        contentAlignment = Alignment.Center
+                                    ) {
+                                        Icon(
+                                            imageVector = Icons.Default.PlayArrow,
+                                            contentDescription = "Play video",
+                                            tint = Color.White,
+                                            modifier = Modifier.size(48.dp)
+                                        )
+                                    }
                                 }
                             }
 
