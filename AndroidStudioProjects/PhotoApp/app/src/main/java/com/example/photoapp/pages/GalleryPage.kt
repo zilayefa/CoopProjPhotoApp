@@ -315,7 +315,7 @@ fun BottomBar(onHomeClick: () -> Unit, onShareClick: () -> Unit) {
         modifier = Modifier
             .fillMaxWidth() // Stretch across the screen
             .background(Color.White) // White background for bar
-            .padding(vertical = 10.dp, horizontal = 24.dp), // Inner padding
+            .padding(top = 10.dp, bottom = 24.dp, start = 24.dp, end = 24.dp), // Added bottom padding for Android nav bar
         horizontalArrangement = Arrangement.SpaceBetween, // Items at left and right
         verticalAlignment = Alignment.CenterVertically // Center icons/text vertically
     ) {
