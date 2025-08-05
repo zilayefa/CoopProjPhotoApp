@@ -21,6 +21,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -315,7 +316,8 @@ fun BottomBar(onHomeClick: () -> Unit, onShareClick: () -> Unit) {
         modifier = Modifier
             .fillMaxWidth() // Stretch across the screen
             .background(Color.White) // White background for bar
-            .padding(top = 10.dp, bottom = 24.dp, start = 24.dp, end = 24.dp), // Added bottom padding for Android nav bar
+            .navigationBarsPadding() // Automatically adds padding for system navigation bar
+            .padding(vertical = 10.dp, horizontal = 24.dp), // Inner padding
         horizontalArrangement = Arrangement.SpaceBetween, // Items at left and right
         verticalAlignment = Alignment.CenterVertically // Center icons/text vertically
     ) {
